@@ -4,231 +4,94 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Modern Calculator</title>
+    <title>Image Gallery</title>
 
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: Arial, sans-serif;
-        }
-
-        body {
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
-
-    background:
-        radial-gradient(circle at 15% 20%, rgba(255,255,255,.12) 0 2px, transparent 3px),
-        radial-gradient(circle at 80% 70%, rgba(255,255,255,.10) 0 2px, transparent 3px),
-        linear-gradient(135deg, #667eea, #764ba2);
-
-    position: relative;
-}
-
-/* Mathematical symbols */
-body::before {
-    content: "∑   π   √x   ∞   ∫   x²   y = mx + c   Δ   θ   α   β   ≈   ≠   ±   f(x)   a²+b²=c² ⊭ √ ∛ ∞ ∑ ∏ ∫ ∂ ∆ ∇ x² y³ aⁿ f(x) sin θ cos θ tan θ log lim dy/dx ∫₀∞ ∈ ∉ ⊂ ⊆ ∪ ∩ ∀ ∃ ∅";
-
-    position: absolute;
-    inset: 0;
-
-    font-size: 35px;
-    line-height: 4;
-    letter-spacing: 25px;
-    word-spacing: 35px;
-
-    color: rgba(255,255,255,0.14);
-
-    transform: rotate(-8deg) scale(1.2);
-
-    pointer-events: none;
-    z-index: 0;
-}
-
-/* Calculator upar rahe */
-.calculator {
-    position: relative;
-    z-index: 2;
-}
-
-        .calculator {
-            width: 340px;
-            padding: 25px;
-            border-radius: 20px;
-            background: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(15px);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
-        }
-
-        #display {
-            width: 100%;
-            height: 70px;
-            border: none;
-            outline: none;
-            border-radius: 12px;
-            margin-bottom: 20px;
-            padding: 15px;
-            font-size: 28px;
-            text-align: right;
-            background: white;
-            color: #222;
-        }
-
-        .buttons {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 12px;
-        }
-
-        button {
-            height: 60px;
-            border: none;
-            border-radius: 12px;
-            font-size: 20px;
-            cursor: pointer;
-            transition: 0.2s;
-            background: rgba(255, 255, 255, 0.9);
-        }
-
-        button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-        }
-
-        .operator {
-            background: #ff9500;
-            color: white;
-        }
-
-        .clear {
-            background: #ff3b30;
-            color: white;
-        }
-
-        .equal {
-            background: #34c759;
-            color: white;
-            grid-column: span 2;
-        }
-
-        .zero {
-            grid-column: span 2;
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
-    <div class="calculator">
+    <h1>My Image Gallery</h1>
 
-        <input type="text" id="display" placeholder="0" readonly>
-
-        <div class="buttons">
-
-            <button class="clear" onclick="clearDisplay()">C</button>
-            <button onclick="deleteLast()">⌫</button>
-            <button class="operator" onclick="appendValue('/')">÷</button>
-            <button class="operator" onclick="appendValue('*')">×</button>
-
-            <button onclick="appendValue('7')">7</button>
-            <button onclick="appendValue('8')">8</button>
-            <button onclick="appendValue('9')">9</button>
-            <button class="operator" onclick="appendValue('-')">−</button>
-
-            <button onclick="appendValue('4')">4</button>
-            <button onclick="appendValue('5')">5</button>
-            <button onclick="appendValue('6')">6</button>
-            <button class="operator" onclick="appendValue('+')">+</button>
-
-            <button onclick="appendValue('1')">1</button>
-            <button onclick="appendValue('2')">2</button>
-            <button onclick="appendValue('3')">3</button>
-
-            <button class="equal" onclick="calculate()">=</button>
-
-            <button class="zero" onclick="appendValue('0')">0</button>
-            <button onclick="appendValue('.')">.</button>
-
-        </div>
+    <!-- Category Buttons -->
+    <div class="filter-buttons">
+        <button class="active" data-filter="all">All</button>
+        <button data-filter="nature">Nature</button>
+        <button data-filter="city">City</button>
+        <button data-filter="animals">Animals</button>
     </div>
 
 
-    <script>
+    <!-- Image Gallery -->
+    <div class="gallery">
 
-        const display = document.getElementById("display");
+        <div class="gallery-item nature">
+            <img src="https://picsum.photos/id/10/600/400" alt="Nature">
+        </div>
 
-        function appendValue(value) {
-            display.value += value;
-        }
+        <div class="gallery-item city">
+            <img src="https://picsum.photos/id/1011/600/400" alt="City">
+        </div>
 
-        function clearDisplay() {
-            display.value = "";
-        }
+        <div class="gallery-item animals">
+            <img src="https://picsum.photos/id/1025/600/400" alt="Animal">
+        </div>
 
-        function deleteLast() {
-            display.value = display.value.slice(0, -1);
-        }
+        <div class="gallery-item nature">
+            <img src="https://picsum.photos/id/1015/600/400" alt="Nature">
+        </div>
 
-        function calculate() {
+        <div class="gallery-item city">
+            <img src="https://picsum.photos/id/1031/600/400" alt="City">
+        </div>
 
-            try {
+        <div class="gallery-item animals">
+            <img src="https://picsum.photos/id/237/600/400" alt="Animal">
+        </div>
 
-                if (display.value === "") return;
+        
 
-                display.value = eval(display.value);
+        <div class="gallery-item nature">
+            <img src="https://picsum.photos/id/1043/600/400" alt="Nature">
+        </div>
 
-            } catch (error) {
+        <div class="gallery-item city">
+            <img src="https://picsum.photos/id/1019/600/400" alt="City">
+        </div>
 
-                display.value = "Error";
+        <div class="gallery-item animals">
+            <img src="https://picsum.photos/id/1074/600/400" alt="Animal">
+        </div>
 
-            }
-        }
+        <div class="gallery-item nature">
+            <img src="https://picsum.photos/id/1040/600/400" alt="Nature">
+        </div>
+
+        <div class="gallery-item city">
+           <img src="https://picsum.photos/id/1047/600/400" alt="City">
+        </div>
+
+        <div class="gallery-item animals">
+           <img src="https://picsum.photos/id/1024/600/400" alt="Animal">
+        </div>
+
+    </div>
 
 
-        // Keyboard Support
+    <!-- Lightbox -->
+    <div class="lightbox">
 
-        document.addEventListener("keydown", function(event) {
+        <span class="close">&times;</span>
 
-            const key = event.key;
+        <button class="prev">&#10094;</button>
 
-            if (
-                (key >= "0" && key <= "9") ||
-                key === "+" ||
-                key === "-" ||
-                key === "*" ||
-                key === "/" ||
-                key === "."
-            ) {
+        <img class="lightbox-img" src="" alt="">
 
-                appendValue(key);
+        <button class="next">&#10095;</button>
 
-            }
+    </div>
 
-            else if (key === "Enter" || key === "=") {
 
-                calculate();
-
-            }
-
-            else if (key === "Backspace") {
-
-                deleteLast();
-
-            }
-
-            else if (key === "Escape") {
-
-                clearDisplay();
-
-            }
-
-        });
-
-    </script>
+    <script src="script.js"></script>
 
 </body>
 </html>
